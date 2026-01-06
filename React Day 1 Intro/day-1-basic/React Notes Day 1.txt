@@ -1,0 +1,16 @@
+React Notes Day 1:
+
+"Uses less code for more complex websites"
+
+Open source library created by Facebook and is maintained by a Facebook group. Also constantly being updated and maintained.
+
+- Virtual DOM (Popularized by React in 2013)
+- Next.js (Based on React)
+
+~~To get started with a project run the following commands~~
+ensure npm and node is installed to check:
+npm -v node -v
+
+create a react app:
+npx create-react-app {your-chosen-folder-name or . for current folder}
+
