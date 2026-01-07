@@ -1,4 +1,4 @@
-React Notes Day 1:
+React Notes Day 1: How To Get Started
 
 "Uses less code for more complex websites"
 
@@ -14,3 +14,12 @@ npm -v node -v
 create a react app:
 npx create-react-app {your-chosen-folder-name or . for current folder}
 
+===============================================
+React Notes Day 2: Introduction To Components
+
+App.js 
+- looks like a javascript function that returns an HTML div
+- called JSX (Syntax presented by React which should make it easier to mix rendering logic with UI coding)
+
+props
+components
