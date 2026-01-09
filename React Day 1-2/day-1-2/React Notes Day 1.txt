@@ -23,3 +23,34 @@ App.js
 
 props
 components
+
+===============================================
+React Notes Day 3: Implementing CSS | Conditional Rendering | Working with Lists
+
+Ternary operators are very useful and it looks much cleaner when used inside the jsx file
+Although it is great for simple UI decisions, its usage should have some limitations such as:
+- Avoid when conditions are complex,
+- nested,
+- includes multiple statements,
+- you need readability for debugging in the future.
+
+? is if
+: is else
+
+sample code: 420 === "420" ? console.log("This Shi Lit") : console.log("This Ain't Lit Fam")
+result: This Ain't Lit Fam (Because === is strict conditioning it should have the same value + type)
+
+Need to familiarize with JS array functions as well
+1. map() – transform each item (MOST USED)  ex. numbers.map(n => n * 2);
+2. filter() – keep what you want            ex. const evens = numbers.filter(n => n % 2 === 0);
+3. find() – get ONE item                    ex. const user = users.find(u => u.id === 2);
+4. includes() – check if value exists       ex. roles.includes("admin"); // true
+5. some() – at least one matches            ex. numbers.some(n => n % 2 === 0); // false
+6. every() – all must match                 ex. numbers.every(n => n % 2 === 0);
+7. reduce() – combine into one value
+8. push() – add to end (mutates array)
+9. pop() – remove last item
+10. shift() // remove first / unshift() // add to start
+11. slice() – copy part of array (safe)
+12. splice() – remove or insert (mutates)
+13. sort() – reorder items
