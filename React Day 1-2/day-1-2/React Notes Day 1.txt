@@ -54,3 +54,17 @@ Need to familiarize with JS array functions as well
 11. slice() – copy part of array (safe)
 12. splice() – remove or insert (mutates)
 13. sort() – reorder items
+
+===============================================
+React Notes Day 4: What are States | useState Hook
+
+State (useState) - a variable that holds data which React can display live when the value changes 
+ex. const [score, setScore] = useState(0);
+score = the variable
+setScore = a function that you can assign to the state (mainly for when you want to change the value of the variable)
+useState(0) = initial value of the state
+
+Variables ub JS:
+let → value can be reassigned
+const → value cannot be reassigned
+var 
