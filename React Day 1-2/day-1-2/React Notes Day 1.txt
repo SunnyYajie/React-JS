@@ -14,6 +14,9 @@ npm -v node -v
 create a react app:
 npx create-react-app {your-chosen-folder-name or . for current folder}
 
+run code:
+npm start
+
 ===============================================
 React Notes Day 2: Introduction To Components
 
@@ -68,3 +71,7 @@ Variables ub JS:
 let → value can be reassigned
 const → value cannot be reassigned
 var 
+
+===============================================
+React Notes Day 4: CRUD
+
