@@ -8,23 +8,35 @@ function App() {
     setNewTodo(event.target.value);
   };
   const addTodo = () => {
-    setList([...todoList, newTodo]);
+    if (!newTodo) return;
+    const todo = {
+      id: todoList.length === 0 ? 1 : todoList[todoList.length - 1].id + 1,
+      todoName: newTodo,
+    };
+    setList([...todoList, todo]);
     setNewTodo("");
+  };
+  const deleteTodo = (id) => {
+    setList(todoList.filter((todo) => todo.id !== id ));
   };
 
   return (
     <div className="App">
       <div style={{backgroundColor: "#213C51"}}>
-        <h2 style={{ margin: "0rem", padding: ".5rem" , color: "white"}}>To Do List</h2>
+        <h1 style={{ margin: "0rem", padding: ".5rem" , color: "white"}}>To Do List</h1>
       </div>
       <div className="editTodo">
-        <input onChange={currentInput} value={newTodo} /> <br></br>
+        <input onChange={currentInput} value={newTodo} type="text" /> <br></br>
         <button onClick={addTodo}>Add Task</button>
         <button>Edit Task</button>
         <button>Remove Task</button>
       </div>
       <div className='todo'>
-        {todoList.map((task) => { return <li>{task}</li>; })}
+        {todoList.map((todo) => { 
+          return <div className="listItem">
+            <li>{todo.todoName}</li> 
+            <button onClick={() => deleteTodo(todo.id)} style={{alignItems: "right", marginLeft: "1rem", marginBottom: "1rem"}}>Remove</button>
+          </div>; })}
       </div>
     </div>
   );

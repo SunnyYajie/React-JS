@@ -24,7 +24,15 @@
 }
 
 .todo > *{
-  text-align: left;
   font-size: medium;
   margin: 0% 25%;
+}
+
+.todo {
+  text-align: left;
+}
+
+.listItem {
+  display: flex;
+  
 }
