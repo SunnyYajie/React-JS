@@ -28,11 +28,28 @@
   margin: 0% 25%;
 }
 
-.todo {
-  text-align: left;
-}
-
 .listItem {
   display: flex;
   
+}
+
+.todo-text {
+  display: flex;
+  margin-left: .5rem;
+  text-align: left;
+  flex: 1; 
+}
+
+.todo-actions {
+  display: flex;
+  gap: 1rem;
+}
+
+.completed {
+  background-color: rgb(166, 243, 166);
+}
+
+.completed > .todo-text{
+  text-decoration: line-through;
+
 }
