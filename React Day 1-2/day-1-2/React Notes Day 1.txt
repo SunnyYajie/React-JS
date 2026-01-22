@@ -73,5 +73,23 @@ const → value cannot be reassigned
 var 
 
 ===============================================
-React Notes Day 4: CRUD
+React Notes Day 6: Component Lifecycle | useEffect Hook | React StrictMode
+
+Lifecycle - birth to death of a component (beginning to end)
+    mounting    - start
+    updating    - middle
+    unmounting  - end
+
+useEffect(() => {
+    console.log("Component Mounted");
+
+    return () => {
+        console.log("Component Unmounted");
+    };
+}, []); //Array is for updating
+
+===============================================
+React Notes Day 7: fetch Function | Axios | API
+
+
 
