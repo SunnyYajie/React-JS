@@ -6,27 +6,39 @@ import { useState, useEffect } from 'react';
 
 
 function App() {
-  const [personName, setPersonName] = useState("");
-  const [personAge, setPersonAge] = useState(null);
+  const [excuseName, setExcuseName] = useState("");
+  const [excuseExcuse, setExcuseExcuse] = useState(null);
 
-
-  const fetchPersonAge = () => {
-    Axios.get(`https://api.agify.io/?name=${personName}`).then((response) => {
-      setPersonAge(response.data);
+  const fetchExcuse = (category) => {
+    Axios.get(`https://excuser-three.vercel.app/v1/excuse/${category}`).then((response) => {
+      setExcuseExcuse(response.data[0]);
+      setExcuseName(category);
     });
   };
 
 
   return (
     <div className={styles.App}>
-      <input placeholder='Ex. Jaboody' onChange={(event) => {setPersonName(event.target.value)}}></input>
       <br></br>
-      <br></br>
-      <button onClick={fetchPersonAge}>Guess Age</button>
+      <h1>Get Your Excuses</h1>
+      <div className={styles.ButtonsDiv}>
+        <button onClick={() => {fetchExcuse("family");}}>Family</button>
+        <button onClick={() => {fetchExcuse("office");}}>Office</button>
+        <button onClick={() => {fetchExcuse("children");}}>Children</button>
+        <button onClick={() => {fetchExcuse("college");}}>College</button>
+        <button onClick={() => {fetchExcuse("party");}}>Party</button>
+        <button onClick={() => {fetchExcuse("funny");}}>Funny</button>
+        <button onClick={() => {fetchExcuse("unbelievable");}}>Unbelievable</button>
+        <button onClick={() => {fetchExcuse("developers");}}>Developers</button>
+        <button onClick={() => {fetchExcuse("gaming");}}>Gaming</button>
+      </div>
 
-      <h1> Name: {personAge?.name} </h1>      
-      <h1> Predicted Age: {personAge?.age} </h1>
-      <h1> Count: {personAge?.count} </h1>
+      {/* {console.log(excuseExcuse)} */}
+
+      <br></br>
+
+      <h2> For: {excuseName.charAt(0).toUpperCase() + excuseName.slice(1)} </h2>
+      <h2>{excuseExcuse?.excuse}</h2>
 
     </div>
   );
