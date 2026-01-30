@@ -89,7 +89,7 @@ useEffect(() => {
 }, []); //Array is for updating
 
 ===============================================
-React Notes Day 7: fetch Function | Axios | API
+React Notes Day 10: React Query
 
 
 
