@@ -134,7 +134,7 @@ const [catWisdom, setCatWisdom] = useState("");
       <p> {catWisdom} </p>
     </div>
 
-    ==== Excuses API ====
+==== Excuses API ====
 
 const [excuseName, setExcuseName] = useState("");
   const [excuseExcuse, setExcuseExcuse] = useState(null);
@@ -166,3 +166,120 @@ const [excuseName, setExcuseName] = useState("");
 
       <h2> For: {excuseName.charAt(0).toUpperCase() + excuseName.slice(1)} </h2>
       <h2>{excuseExcuse?.excuse}</h2>
+
+  ==== React Query ====
+
+  import styles from './App.module.css';
+import Axios from 'axios';
+import { useState, useEffect, createContext } from 'react';
+import { BrowserRouter as Router, Route, Routes, Link, useHistory, useLocation } from 'react-router-dom';
+import { Home } from "./pages/Home";
+import { Menu } from "./pages/Menu";
+import { Contact } from "./pages/Contact";
+import { Profile } from "./pages/Profile";
+import { Navbar } from "./pages/Navbar";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+
+export const AppContext = createContext();
+
+
+function App() {
+  const client = new QueryClient({defaultOptions: {
+    queries: {
+      refetchOnWindowFocus: false,
+    }
+  }});
+
+
+  const [username, setUsername] = useState("Minion");
+
+  return (
+    <div className={styles.App}>
+      <QueryClientProvider client={client}>
+        <AppContext.Provider value={{ username, setUsername }}>
+          <Router>
+            <Navbar />
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/menu" element={<Menu />} />
+              <Route path="/profile" element={<Profile />} />
+              <Route path="/contact" element={<Contact />} />
+              <Route path="*" element={<h1>Page not found</h1>} />
+            </Routes>
+          </Router>
+        </AppContext.Provider>
+      </QueryClientProvider>
+    </div>
+  );
+}
+
+
+export default App;
+
+Home.js
+
+import { useQuery } from "@tanstack/react-query";
+import axios from "axios";
+
+export const Home = () => {
+  const { data: catData, isLoading, isError, refetch } = useQuery({
+    queryKey: ["cat"],
+    queryFn: async () => {
+      const response = await axios.get("https://catfact.ninja/fact");
+      return response.data;
+    },
+  });
+
+  if (isLoading) return <h1>Loading...</h1>;
+  if (isError) return <h1>Error fetching cat fact</h1>;
+
+  return (
+    <div>
+      <h1>Random Cat Fact: </h1>
+      <p>{catData.fact}</p>
+      <button style={{margin: "1rem"}} onClick={refetch}>New Cat Fact</button>
+    </div>
+  );
+};
+
+ChangeProfile.js
+
+import { useState, useContext } from "react";
+import { AppContext } from "../App";
+
+export const ChangeProfile = () => {
+    const {setUsername} = useContext(AppContext);
+    const [newUsername, setNewUsername] = useState("");
+    return(
+        <div>
+            <input onChange={(event) => {
+                setNewUsername(event.target.value);
+            }} />
+            <br />
+            <button style={{margin: "1rem"}} onClick={() => {
+                setUsername(newUsername); 
+            }}>
+                Change Username
+            </button>
+        </div>
+    );
+};
+
+Profile.js
+
+import { useContext } from "react";
+import { AppContext } from "../App";
+import { ChangeProfile } from "./ChangeProfile";
+
+
+export const Profile = () => {
+    const { username } = useContext(AppContext);
+
+    return (
+        <div>
+            <h1> Welcome to the Profile Page User: {username}</h1>
+            <ChangeProfile />
+        </div>
+
+    );
+}
